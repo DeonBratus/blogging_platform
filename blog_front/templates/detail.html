@@ -1,0 +1,41 @@
+<!-- detail.html -->
+
+{% extends "layout.html" %}
+{% block content %}
+    <h2>{{ blog.article_title }}</h2>
+    <p>{{ blog.content }}</p>
+
+    <div class="actions" id="authActions" style="display:none;">
+        <a href="/blogs/edit/?blog_id={{blog.id}}">Edit</a>
+        <form action="/api/blogs/{{ blog.id }}" method="post" onsubmit="return confirmDelete(event)">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+
+    <a href="/">Back to all blogs</a>
+
+    <script>
+        const token = localStorage.getItem("token");
+        if (token) {
+            document.getElementById("authActions").style.display = "block";
+        }
+
+        async function confirmDelete(event) {
+            event.preventDefault();
+            const confirmation = confirm("Are you sure you want to delete this blog?");
+            if (!confirmation) return;
+
+            const response = await fetch(`/api/blogs/{{ blog.id }}`, {
+                method: "DELETE",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+
+            if (response.ok) {
+                alert("Blog deleted successfully.");
+                window.location.href = "/";
+            } else {
+                alert("Failed to delete the blog.");
+            }
+        }
+    </script>
+{% endblock %}

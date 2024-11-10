@@ -1,0 +1,26 @@
+<!-- index.html -->
+
+{% extends "layout.html" %}
+{% block content %}
+<h2>All Blogs</h2>
+<div class="list_blogs">
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                <a href="/blogs/?blog_id={{ blog.id }}">{{ blog.article_title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<nav id="authCreate" style="display:none;">
+    <a href="/blogs/new">Create New Blog</a>
+</nav>
+
+<script>
+    const token = localStorage.getItem("token");
+    if (token) {
+        document.getElementById("authCreate").style.display = "block";
+    }
+</script>
+{% endblock %}

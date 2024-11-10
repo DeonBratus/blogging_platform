@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Blog App</title>
+</head>
+<body>
+    <header>
+        <h1><a class='main' href="/">Blog App</a></h1>
+        <nav>
+            <span id="authLinks">
+                {% if username %}
+                    <a href="#" id="logoutLink">Logout</a>
+                    <span>Welcome, {{ username }}</span>
+                {% else %}
+                    <a href="/login" id="loginLink">Login</a>
+                {% endif %}
+            </span>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        document.getElementById("logoutLink")?.addEventListener("click", () => {
+            document.cookie = "token=; Max-Age=0";  // Удалить токен из куков
+            location.reload();  // Обновить страницу
+        });
+    </script>
+</body>
+</html>

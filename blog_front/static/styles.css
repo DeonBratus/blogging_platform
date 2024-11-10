@@ -1,0 +1,166 @@
+/* Общие настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eaf0ee;
+    color: rgb(27, 27, 27);
+    margin: 0;
+    padding: 30px;
+}
+
+/* Основной контент */
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 10px;
+}
+
+/* Заголовки */
+h1, h2 {
+    color: rgb(7, 7, 7);
+    margin-bottom: 10px;
+}
+
+/* Стили для ссылок в header */
+header a.main {
+    text-decoration: none;
+    color: rgb(0, 194, 146);
+    font-size: 1.2em;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+}
+
+/* Список блогов */
+div.list_blogs {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid rgb(92, 184, 149);
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+div.list_blogs a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #353535;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+div.list_blogs a:hover {
+    background-color: rgb(194, 255, 212);
+}
+
+div.list_blogs li {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eafffa;
+    color: transparent;
+}
+
+/* Кнопка "Создать блог" */
+nav a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 900;
+    color: #141414;
+    background-color: rgb(3, 165, 111);
+    padding: 12px 20px;
+    border-radius: 20px;
+    width: 180px;
+    margin: 0 auto 30px;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+    position: relative;
+}
+
+nav a:hover {
+    background-color: rgb(62, 63, 62);
+}
+
+/* Действия (кнопки "Редактировать", "Удалить" и "Назад к блогам") */
+div.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+div.actions button,
+div.actions a {
+    padding: 10px 20px;
+    color: #1a1a1a;
+    background-color: rgb(0, 167, 111);
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+div.actions button:hover,
+div.actions a:hover {
+    background-color: rgb(0, 167, 111);
+}
+
+div.actions a {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Поля ввода и текстовые области */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: aliceblue;
+    font-size: 1em;
+}
+
+textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+/* Кнопки отправки формы */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(0, 167, 111);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: rgb(173, 255, 47);
+}
+
+span * {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+}
+span a {
+    background-color: #00af7b;
+    position: fixed ;
+    top: 0px;
+    right: 5px;
+}
