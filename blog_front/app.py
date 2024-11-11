@@ -2,6 +2,8 @@ from fastapi import FastAPI, Request, HTTPException, Form
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from users.auth import SECRET_KEY
+import jwt
 from pathlib import Path
 import requests
 
@@ -13,6 +15,14 @@ base_dir = Path(__file__).resolve().parent
 templates = Jinja2Templates(directory=str(base_dir / "templates"))
 app.mount("/static", StaticFiles(directory=str(base_dir / "static")), name="static")
 
+
+def get_username_from_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return payload.get("sub")  # sub — это имя пользователя в токене
+    except (jwt.DecodeError, jwt.ExpiredSignatureError):
+        return None
+
 @app.get("/")
 def index(request: Request):
     try:
@@ -20,12 +30,15 @@ def index(request: Request):
     except ConnectionError as e:
         raise (e)
     blogs = response.json()
+    token = request.cookies.get("token")  # Получаем токен из куков
+    username = get_username_from_token(token) if token else None
     return templates.TemplateResponse(
         name="index.html",
         context=
             {
                 "request": request, 
-                "blogs": blogs
+                "blogs": blogs,
+                "username": username
             }
         )
 
@@ -36,10 +49,13 @@ def detail(request: Request, blog_id: int):
     if response.status_code == 404:
         raise HTTPException(status_code=response.status_code)
     blog = response.json()
+    token = request.cookies.get("token")  # Получаем токен из куков
+    username = get_username_from_token(token) if token else None  
     return templates.TemplateResponse("detail.html",
             {
                 "request": request,
-                "blog": blog
+                "blog": blog,
+                "username": username
             }
         )   
 
