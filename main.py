@@ -13,4 +13,4 @@ app.mount("/", blog_app)  # Привязываем приложение к ко�
 # Запуск приложения с uvicorn
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.03", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
